@@ -1,0 +1,287 @@
+version: "3.1"
+
+nlu:
+
+  - intent: saluer
+    examples: |
+      - bonjour
+      - salut
+      - bonsoir
+      - bonjour agrismart
+      - hello
+      - bonsoir je voudrais de l'aide
+      - bonjour j'ai besoin d'une recommandation
+      - salut comment ça va
+      - bonjour je suis agriculteur
+      - bonne journée
+      - bonjour à vous
+      - hey
+      - coucou
+      - bonjour ça marche bien votre système ?
+      - bonsoir je veux essayer agrismart
+
+  - intent: au_revoir
+    examples: |
+      - au revoir
+      - merci au revoir
+      - bye
+      - à bientôt
+      - merci pour votre aide
+      - c'est tout merci
+      - merci beaucoup
+      - bonne journée à vous
+      - je vais y aller
+      - c'est bon merci
+      - on a fini
+      - adieu
+      - à la prochaine
+      - merci pour les informations
+      - je vous remercie
+      - ciao
+      - ok merci bye
+
+  - intent: demander_recommandation
+    examples: |
+      - quelle culture me recommandes-tu ?
+      - que dois-je planter ?
+      - quelle est la meilleure culture pour ma parcelle ?
+      - qu'est-ce que je devrais cultiver ?
+      - recommande-moi une culture
+      - quelle culture planter cette saison ?
+      - dis-moi quoi cultiver
+      - quelle plante est adaptée à mon sol ?
+      - tu me conseilles quoi à planter ?
+      - quelle culture pour mon champ ?
+      - que planter dans ma région ?
+      - j'aimerais savoir quelle culture choisir
+      - aide-moi à choisir une culture
+      - quelle est ta recommandation ?
+      - quelle culture est la mieux adaptée ?
+      - qu'est-ce que je peux planter ?
+      - qu'est-ce que je dois semer ?
+      - donne-moi une recommandation de culture
+      - quelle culture me convient le mieux ?
+      - je veux savoir quelle culture planter sur mon terrain
+
+  - intent: demander_explication
+    examples: |
+      - pourquoi cette culture ?
+      - explique-moi ce choix
+      - pourquoi ce choix ?
+      - comment tu as décidé ça ?
+      - qu'est-ce qui justifie cette recommandation ?
+      - pourquoi pas une autre culture ?
+      - explique-moi la recommandation
+      - comment le modèle a décidé ?
+      - je voudrais comprendre pourquoi
+      - donne-moi des explications
+      - sur quelle base tu recommandes ça ?
+      - pourquoi ce résultat ?
+      - comment en es-tu arrivé là ?
+      - quelles sont les raisons de cette recommandation ?
+      - pourquoi le modèle a choisi cette culture ?
+      - explique pourquoi le modèle a fait ce choix
+      - qu'est-ce qui a décidé de ce choix ?
+      - qu'est-ce qui justifie ce choix ?
+      - c'est quoi les raisons derrière cette recommandation ?
+      - comment le modèle est arrivé à cette conclusion ?
+      - le modèle est basé sur quoi exactement ?
+      - quelles sont les trois variables les plus importantes ?
+      - montre-moi les 3 facteurs les plus importants
+      - quels facteurs ont le plus influencé la décision ?
+      - quel paramètre a eu le plus d'impact ?
+      - dis-moi les facteurs clés
+      - quels sont les facteurs déterminants ?
+      - donne-moi le top 3 des facteurs
+      - quelles variables ont le plus compté ?
+      - quel paramètre a eu le plus d'impact dans la décision ?
+      - est-ce que c'est le pH ou la température qui a décidé ?
+      - quels paramètres ont décidé de ce choix ?
+      - donne-moi les paramètres les plus importants
+      - qu'est-ce qui a le plus pesé dans la décision ?
+      - confirme-moi la culture que tu as en mémoire
+      - rappelle-moi ce que tu as recommandé
+      - tu te souviens de ma dernière recommandation ?
+      - quelle est la culture en cours d'analyse ?
+      - la culture recommandée est bien le maïs ?
+      - pourquoi le maïs ?
+      - pourquoi le riz ?
+      - pourquoi le coton ?
+
+  - intent: demander_alternatives
+    examples: |
+      - quelles autres cultures sont possibles ?
+      - y a-t-il des alternatives ?
+      - montre-moi d'autres options
+      - quelles sont les autres cultures possibles ?
+      - je veux voir d'autres choix
+      - qu'est-ce qu'on peut planter d'autre ?
+      - y a-t-il d'autres cultures adaptées ?
+      - donne-moi des alternatives
+      - quoi d'autre peut pousser sur ma parcelle ?
+      - si je ne veux pas cette culture, quoi d'autre ?
+      - propose-moi autre chose
+      - quels sont les autres choix possibles ?
+      - montre-moi les autres cultures
+      - d'autres cultures sont-elles envisageables ?
+      - quelles sont les deuxième et troisième options ?
+      - si je ne veux pas planter le maïs, que faire ?
+      - y a-t-il des alternatives à cette recommandation ?
+      - donne-moi des cultures alternatives
+      - qu'est-ce que je peux planter d'autre ?
+      - quelles autres cultures sont envisageables ?
+
+  - intent: demander_conseils
+    examples: |
+      - comment améliorer ma parcelle ?
+      - donne-moi des conseils
+      - comment optimiser mon sol ?
+      - comment augmenter mon rendement ?
+      - quels engrais utiliser ?
+      - comment améliorer le pH de mon sol ?
+      - comment mieux préparer mon champ ?
+      - que faire pour avoir un meilleur rendement ?
+      - comment améliorer mes conditions agricoles ?
+      - des conseils pratiques pour mon champ ?
+      - comment corriger mon sol ?
+      - que faire si mon azote est faible ?
+      - comment préparer le sol ?
+      - quelles bonnes pratiques agricoles ?
+      - comment améliorer la fertilité de mon sol ?
+      - comment avoir une meilleure récolte ?
+      - quel sol convient au sorgho ?
+      - quel sol convient au maïs ?
+      - comment préparer mon sol pour la culture ?
+
+  - intent: demander_shap
+    examples: |
+      - que signifient les barres ?
+      - c'est quoi SHAP ?
+      - explique-moi le graphique
+      - que veulent dire les barres rouges et bleues ?
+      - c'est quoi le waterfall ?
+      - comment lire le graphique SHAP ?
+      - que signifie E[f(x)] ?
+      - comment interpréter les barres ?
+      - c'est quoi ces barres colorées ?
+      - explique le graphique d'explication
+      - que représente le graphique waterfall ?
+      - je ne comprends pas les barres
+      - comment lire les valeurs SHAP ?
+      - que signifie f(x) dans le graphique ?
+      - explique-moi les couleurs du graphique
+      - comment lire la cascade ?
+      - c'est quoi les barres rouges et bleues ?
+      - que signifie E[f(x)] ?
+      - que veut dire f(x) = 0.054 ?
+      - je ne comprends pas le graphique
+      - c'est quoi les caractéristiques du mil ?
+      - c'est quoi les valeurs SHAP ?
+
+  - intent: demander_pratiques_agricoles
+    examples: |
+      - comment cultiver cette plante ?
+      - quelles sont les bonnes pratiques pour cette culture ?
+      - comment faire le labour ?
+      - quand semer cette culture ?
+      - quel écartement pour le semis ?
+      - combien de graines mettre par poquet ?
+      - quand apporter les engrais ?
+      - comment épandre les engrais ?
+      - quand récolter ?
+      - donne-moi les étapes de production
+      - comment entretenir cette culture ?
+      - quelles sont les périodes de production ?
+      - guide de production pour cette culture
+      - les étapes pour cultiver cette plante
+      - calendrier agricole pour cette culture
+      - technique de production
+      - comment produire cette culture correctement ?
+      - les pratiques recommandées pour cette culture
+      - quelles sont les bonnes pratiques pour le maïs ?
+      - quand planter le coton ?
+      - comment cultiver la tomate ?
+      - un commentaire sur cultiver le sorgho ?
+      - comment récolter le riz ?
+      - à quelle période dois-je planter ?
+      - à quelle période planter cette culture ?
+      - quand est la bonne période pour semer ?
+      - comment entretenir mon champ ?
+      - bonne pratique de récolte
+      - guide complet de culture
+      - quand faut-il labourer ?
+      - quel est le bon écartement ?
+      - comment faire le semis ?
+
+  - intent: demander_infos_culture
+    examples: |
+      - dis-moi tout sur le maïs
+      - informations sur le riz
+      - quels sont les besoins du riz ?
+      - parle-moi du mil
+      - parle-moi du sorgho
+      - parle-moi du fonio
+      - parle-moi du coton
+      - c'est quoi les besoins du maïs ?
+      - de combien de pluie a besoin le maïs ?
+      - quelles sont les exigences du coton ?
+      - dis-moi tout sur la tomate
+      - donne-moi des informations sur le maïs
+      - que sais-tu du sorgho ?
+      - parle-moi de la canne à sucre
+      - quelles sont les caractéristiques du riz ?
+      - en quoi consiste la culture du maïs ?
+      - qu'est-ce que le fonio ?
+      - qu'est-ce que le mil ?
+      - comment se cultive le coton ?
+      - donne-moi les infos sur le sorgho
+
+  - intent: demander_projet
+    examples: |
+      - c'est quoi AgriSmart ?
+      - parle-moi du projet
+      - qui a créé cette application ?
+      - qui sont les fondateurs ?
+      - qui a développé AgriSmart ?
+      - qui êtes-vous ?
+      - d'où vient ce projet ?
+      - c'est qui derrière ce projet ?
+      - présente-moi le projet
+      - décris le projet AgriSmart
+      - c'est quoi ce système ?
+      - comment fonctionne AgriSmart ?
+      - qui a fait cette application ?
+      - c'est un projet de qui ?
+      - qui sont les développeurs ?
+      - dans quel cadre ce projet a été développé ?
+      - c'est un projet du LaboIA ?
+      - parle-moi de l'équipe
+      - c'est un projet universitaire ?
+      - qui sont les membres de l'équipe ?
+      - quelles technologies utilisez-vous ?
+      - c'est quoi XGBoost ?
+      - vous utilisez quoi comme technologie ?
+      - quels outils avez-vous utilisés ?
+      - c'est développé avec quoi ?
+      - qu'est-ce que vous avez utilisé pour faire ça ?
+
+  - intent: demander_meteo_saison
+    examples: |
+      - quels conseils pour la saison des pluies ?
+      - on est en saison des pluies que faire ?
+      - conseils pour la saison sèche
+      - c'est quelle saison pour planter ?
+      - que planter en saison sèche ?
+      - culture adaptée à cette saison
+      - conseils pour la saison actuelle
+      - que faire pendant les pluies ?
+      - quoi cultiver maintenant ?
+      - c'est la bonne période pour planter ?
+      - conseils selon la saison au Bénin
+      - que cultiver en grande saison des pluies ?
+      - que faire pendant la petite saison sèche ?
+      - conseils pour la saison en cours
+      - que planter au Nord-Bénin en saison sèche ?
+      - que cultiver au Sud-Bénin pendant les pluies ?
+      - quelle saison pour le riz ?
+      - quelle est la bonne saison ?

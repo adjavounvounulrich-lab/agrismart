@@ -1,0 +1,68 @@
+version: "3.1"
+
+
+stories:
+
+
+  - story: Conversation complète recommandation + explication + pratiques
+    steps:
+      - intent: saluer
+      - action: utter_saluer
+      - intent: demander_recommandation
+      - action: action_recommander
+      - intent: demander_explication
+      - action: action_expliquer
+      - intent: demander_pratiques_agricoles
+      - action: action_pratiques_agricoles
+      - intent: au_revoir
+      - action: utter_au_revoir
+
+
+  - story: Recommandation puis alternatives puis pratiques
+    steps:
+      - intent: demander_recommandation
+      - action: action_recommander
+      - intent: demander_alternatives
+      - action: action_alternatives
+      - intent: demander_pratiques_agricoles
+      - action: action_pratiques_agricoles
+
+
+  - story: Question sur le projet puis recommandation
+    steps:
+      - intent: saluer
+      - action: utter_saluer
+      - intent: demander_projet
+      - action: utter_decrire_projet
+      - intent: demander_recommandation
+      - action: action_recommander
+      - intent: demander_pratiques_agricoles
+      - action: action_pratiques_agricoles
+      - intent: au_revoir
+      - action: utter_au_revoir
+
+
+  - story: Conseil saison puis recommandation
+    steps:
+      - intent: demander_meteo_saison
+      - action: action_conseil_saison
+      - intent: demander_recommandation
+      - action: action_recommander
+      - intent: demander_pratiques_agricoles
+      - action: action_pratiques_agricoles
+
+
+  - story: Exploration complète avec SHAP
+    steps:
+      - intent: saluer
+      - action: utter_saluer
+      - intent: demander_shap
+      - action: utter_expliquer_shap
+      - intent: demander_recommandation
+      - action: action_recommander
+      - intent: demander_explication
+      - action: action_expliquer
+      - intent: demander_alternatives
+      - action: action_alternatives
+      - intent: au_revoir
+      - action: utter_au_revoir

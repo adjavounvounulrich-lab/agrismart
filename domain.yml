@@ -1,0 +1,262 @@
+version: "3.1"
+
+
+intents:
+  - saluer
+  - au_revoir
+  - demander_recommandation
+  - demander_explication
+  - demander_alternatives
+  - demander_conseils
+  - demander_shap
+  - demander_pratiques_agricoles
+  - demander_projet
+  - demander_meteo_saison
+  - demander_infos_culture
+
+
+slots:
+  culture_predite:
+    type: text
+    mappings:
+      - type: custom
+  top3_shap:
+    type: text
+    mappings:
+      - type: custom
+  confiance:
+    type: text
+    mappings:
+      - type: custom
+  N:
+    type: text
+    mappings:
+      - type: custom
+  P:
+    type: text
+    mappings:
+      - type: custom
+  K:
+    type: text
+    mappings:
+      - type: custom
+  ph:
+    type: text
+    mappings:
+      - type: custom
+  temperature:
+    type: text
+    mappings:
+      - type: custom
+  humidite:
+    type: text
+    mappings:
+      - type: custom
+  pluvio:
+    type: text
+    mappings:
+      - type: custom
+  vent:
+    type: text
+    mappings:
+      - type: custom
+  altitude:
+    type: text
+    mappings:
+      - type: custom
+  engrais:
+    type: text
+    mappings:
+      - type: custom
+  type_sol:
+    type: text
+    mappings:
+      - type: custom
+  region:
+    type: text
+    mappings:
+      - type: custom
+  saison:
+    type: text
+    mappings:
+      - type: custom
+  culture_prec:
+    type: text
+    mappings:
+      - type: custom
+
+
+responses:
+
+
+  utter_saluer:
+    - text: |
+        👋 Bonjour ! Je suis l'assistant AgriSmart.
+
+
+        Je peux vous aider à :
+        • 🌾 Obtenir une recommandation de culture
+        • 🔍 Comprendre pourquoi cette culture a été choisie
+        • 📋 Connaître les bonnes pratiques agricoles au Bénin
+        • 🌱 Explorer des cultures alternatives
+        • 📊 Comprendre les graphiques SHAP
+        • ℹ️ En savoir plus sur le projet AgriSmart
+
+
+        Que souhaitez-vous savoir ?
+
+
+  utter_au_revoir:
+    - text: |
+        🌿 Au revoir et bonne saison agricole !
+        N'hésitez pas à revenir pour une nouvelle analyse.
+        L'équipe AgriSmart vous souhaite une excellente récolte. 🌾
+
+
+  utter_fallback:
+    - text: |
+        🤔 Je n'ai pas bien compris votre question.
+
+
+        Vous pouvez me demander :
+        • "Quelle culture me recommandes-tu ?"
+        • "Pourquoi ce choix ?"
+        • "Les bonnes pratiques pour cette culture"
+        • "Que signifient les barres SHAP ?"
+        • "Parle-moi du projet AgriSmart"
+
+
+  utter_expliquer_shap:
+    - text: |
+        📊 Le graphique Waterfall SHAP — Comment le lire ?
+
+
+        SHAP signifie SHapley Additive exPlanations.
+        C'est une méthode qui décompose la décision du modèle XGBoost
+        paramètre par paramètre.
+
+
+        🔴 Barres rouges : ce paramètre pousse VERS la culture recommandée.
+        🔵 Barres bleues : ce paramètre joue CONTRE cette culture.
+
+
+        E[f(x)] = prédiction de base si on ne sait rien de votre parcelle.
+        f(x) = prédiction finale avec vos données réelles.
+
+
+        Plus une barre est longue, plus ce paramètre a eu d'influence.
+
+
+  utter_decrire_projet:
+    - text: |
+        🌿 AgriSmart — Recommandation de culture par IA
+
+
+        AgriSmart est une application d'intelligence artificielle conçue pour
+        aider les agriculteurs du Bénin à choisir la culture la mieux adaptée
+        à leur parcelle. En analysant 14 paramètres de sol et de climat,
+        notre modèle XGBoost recommande la culture optimale avec une explication
+        visuelle des facteurs décisifs (SHAP Waterfall).
+
+
+        🎓 Contexte de développement
+        Ce projet a été développé dans le cadre de la formation en
+        Intelligence Artificielle organisée au LaboIA de la Bibliothèque
+        CAEB Zongo à Parakou, Bénin.
+
+
+        👥 Equipes du projet
+        • ADJAVOUNVOUN Ulrich
+        • AHONON Boris
+        • AKOHO Thibaut
+        • ALI Fadilath
+        • ALIMI YAO Salman
+        • BIO OROU Lazare
+
+
+        🤖 Technologies : XGBoost · SHAP · Streamlit · RASA
+        ✉️ agrismart@laboiacaebzongo.bj
+
+
+  utter_conseil_saison_pluies:
+    - text: |
+        🌧️ Saison des pluies (Nord) / Grande saison des pluies (Sud)
+
+
+        Cultures idéales pour cette saison au Bénin :
+        • Maïs — première céréale du Bénin, profite des pluies
+        • Riz — exige de l'eau, c'est sa saison optimale
+        • Coton — démarre en début de saison des pluies
+        • Sorgho — s'adapte même si les pluies sont irrégulières
+        • Légumineuses (Soja, Niébé) — fixent l'azote, enrichissent le sol
+
+
+        Conseils pratiques :
+        • Profitez des pluies pour réduire l'irrigation
+        • Surveillez les maladies fongiques liées à l'humidité
+        • Prévoyez le drainage si les pluies sont excessives
+
+
+  utter_conseil_petite_saison_seche:
+    - text: |
+        ☀️ Petite saison sèche (Sud-Bénin — mi-Juillet à mi-Septembre)
+
+
+        Période plus courte et ensoleillée dans le Sud-Bénin.
+
+
+        Cultures adaptées :
+        • Tomate — excellentes conditions, ensoleillement optimal
+        • Légumes feuilles — cycle court, profitent du soleil
+        • Cultures à cycle court déjà en cours
+
+
+        Conseils pratiques :
+        • Irriguez régulièrement les cultures en place
+        • Bonne période pour préparer la petite saison des pluies suivante
+        • Évitez de semer des cultures à long cycle
+
+
+  utter_conseil_saison_seche:
+    - text: |
+        🌵 Saison sèche (Nord) / Grande saison sèche (Sud)
+
+
+        Saison idéale pour les cultures irriguées au Bénin.
+
+
+        Cultures adaptées :
+        • Tomate — production principale en saison sèche irriguée
+        • Légumes maraîchers — haute valeur ajoutée
+        • Oignon, gombo — très adaptés à cette période
+        • Fonio — tolère bien la sécheresse (Nord, Atacora)
+        • Mil — résistant, cultivé dans le Nord en conditions sèches
+
+
+        Conseils pratiques :
+        • Irrigation obligatoire pour la plupart des cultures
+        • Harmattan : protégez les jeunes plants du vent sec
+        • Bonne période pour préparer et labourer pour la saison suivante
+
+
+actions:
+  - utter_saluer
+  - utter_au_revoir
+  - utter_fallback
+  - utter_expliquer_shap
+  - utter_decrire_projet
+  - utter_conseil_saison_pluies
+  - utter_conseil_petite_saison_seche
+  - utter_conseil_saison_seche
+  - action_recommander
+  - action_expliquer
+  - action_alternatives
+  - action_conseils
+  - action_pratiques_agricoles
+  - action_conseil_saison
+  - action_infos_culture
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

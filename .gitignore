@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+rasa_env/
+streamlit_env/
+agrismart_rasa/.rasa/
+agrismart_rasa/models/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,75 @@
+version: "3.1"
+
+
+rules:
+
+
+  - rule: Répondre aux salutations
+    steps:
+      - intent: saluer
+      - action: utter_saluer
+
+
+  - rule: Répondre aux au revoir
+    steps:
+      - intent: au_revoir
+      - action: utter_au_revoir
+
+
+  - rule: Recommander une culture
+    steps:
+      - intent: demander_recommandation
+      - action: action_recommander
+
+
+  - rule: Expliquer la recommandation
+    steps:
+      - intent: demander_explication
+      - action: action_expliquer
+
+
+  - rule: Proposer des alternatives
+    steps:
+      - intent: demander_alternatives
+      - action: action_alternatives
+
+
+  - rule: Donner des conseils agricoles généraux
+    steps:
+      - intent: demander_conseils
+      - action: action_conseils
+
+
+  - rule: Expliquer SHAP
+    steps:
+      - intent: demander_shap
+      - action: utter_expliquer_shap
+
+
+  - rule: Donner les bonnes pratiques agricoles
+    steps:
+      - intent: demander_pratiques_agricoles
+      - action: action_pratiques_agricoles
+
+
+  - rule: Décrire le projet AgriSmart
+    steps:
+      - intent: demander_projet
+      - action: utter_decrire_projet
+
+
+  - rule: Conseils selon la saison béninoise
+    steps:
+      - intent: demander_meteo_saison
+      - action: action_conseil_saison
+
+
+  - rule: Gérer les messages non compris
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fallback
+  - rule: Donner des informations sur une culture spécifique
+    steps:
+      - intent: demander_infos_culture
+      - action: action_infos_culture
+
