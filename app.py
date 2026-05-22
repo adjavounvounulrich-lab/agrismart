@@ -468,6 +468,12 @@ CORRESPONDANCE_CULTURES = {
     "Millet":"Mil",
 }
 
+CORRESPONDANCE_CULTURE_PREC = {
+    "Sorgho": "Blé",
+    "Fonio":  "Orge",
+    "Mil":    "Millet",
+}
+
 # Liste des cultures affichées à l'utilisateur (noms béninois)
 CULTURES = [
     "Riz", "Maïs", "Sorgho", "Coton", "Canne à sucre",
@@ -1050,7 +1056,7 @@ def show_home():
         </div>
         <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:20px;">
             <div style="font-size:13px; color:#374151;">
-                📍 Université d'Abomey-Calavi, Bénin
+                📍 Parakou-sZongo, Bénin
             </div>
             <div style="font-size:13px; color:#374151;">
                 ✉️ agrismart@laboiacaebzongo.bj
@@ -1217,8 +1223,13 @@ def show_analysis():
         # Appel de la fonction principale de prédiction.
         # Elle choisit automatiquement entre le modèle réel et la simulation.
         # La recontextualisation béninoise est déjà appliquée à l'intérieur.
+        # Traduction silencieuse de la culture précédente vers le code modèle
+
+        # Traduction silencieuse de la culture précédente vers le code modèle
+        culture_prec_modele = CORRESPONDANCE_CULTURE_PREC.get(culture_prec, culture_prec)
+
         with st.spinner("⏳ Analyse en cours..."):
-            resultat = predire(params, type_sol, region, saison, culture_prec)
+            resultat = predire(params, type_sol, region, saison, culture_prec_modele)
 
         # Calcul du top 3 SHAP en texte pour transmission à RASA.
         # RASA ne recalcule rien — il lit ce texte depuis les slots.
