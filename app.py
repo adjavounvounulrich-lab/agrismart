@@ -1352,60 +1352,32 @@ def show_analysis():
 
 def afficher_avec_frappe(contenu_brut, placeholder):
     """
-    Affiche un message bot avec un effet de frappe mot par mot.
-
-    APPROCHE :
-    On découpe le texte en tokens (mots + sauts de ligne séparés).
-    À chaque token, on reconvertit les \\n accumulés en <br> avant le rendu.
-    Cela garantit que :
-      - les balises HTML restent complètes à chaque étape (jamais <b partiel)
-      - les retours à la ligne sont visibles progressivement
-      - l'effet de frappe est fluide et lisible
-
-    PROTECTION ANTI-CONFLIT DOM :
-    Si l'utilisateur navigue vers une autre page pendant l'animation,
-    Streamlit lève une StopException interne. Le try/except l'intercepte
-    proprement, évitant l'erreur removeChild dans le navigateur.
-
-    Paramètres :
-        contenu_brut (str)  : texte brut avec \\n comme séparateurs de ligne
-        placeholder         : st.empty() dans lequel afficher progressivement
+    Affiche le texte avec un effet de frappe.
+    Le try/except évite le crash removeChild sur Streamlit Cloud
+    quand Streamlit reconstruit la page pendant l'animation.
     """
-    # Découpage en tokens : mots normaux + marqueurs de saut de ligne (\n)
-    # re.split(r'(\n)') garde les \n comme éléments séparés de la liste
     tokens = re.split(r'(\n)', contenu_brut)
-
     texte_progressif = ""
 
     try:
         for token in tokens:
             if token == "":
                 continue
-
             texte_progressif += token
-
-            # Conversion des \n accumulés en <br> pour le rendu HTML.
-            # On fait cette conversion à CHAQUE itération pour que les sauts
-            # de ligne soient visibles au fur et à mesure de l'animation.
             texte_html = texte_progressif.replace("\n", "<br>")
-
             placeholder.markdown(
                 f'<div class="chat-bot">🤖 {texte_html}</div>',
                 unsafe_allow_html=True
             )
-
             if token == "\n":
-                # Pause légèrement plus longue aux sauts de ligne
                 time.sleep(0.06)
             else:
-                # Délai par mot : 0.018s → environ 55 mots/seconde
                 time.sleep(0.018)
 
     except Exception:
-        # Si Streamlit interrompt l'animation (navigation, rerun),
-        # on affiche le texte complet instantanément et on sort proprement.
-        # Cela évite l'erreur DOM removeChild dans le navigateur.
-        texte_html = texte_progressif.replace("\n", "<br>")
+        # Si l'animation plante, on affiche le texte complet d'un coup
+        # C'est mieux qu'une page blanche ou un crash
+        texte_html = contenu_brut.replace("\n", "<br>")
         placeholder.markdown(
             f'<div class="chat-bot">🤖 {texte_html}</div>',
             unsafe_allow_html=True
